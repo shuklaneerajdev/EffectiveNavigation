@@ -10,9 +10,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 /*
  * 	TabsContainerFragment is responsible for enabling the tab-based browsing in the MainActivity.
  * 	
@@ -33,6 +37,13 @@ public class TabsContainerFragment extends Fragment implements ActionBar.TabList
      */
 
     ViewPager mViewPager;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+    	// TODO Auto-generated method stub
+    	super.onCreate(savedInstanceState);
+    	setHasOptionsMenu(true);
+    }
+    
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -193,5 +204,22 @@ public class TabsContainerFragment extends Fragment implements ActionBar.TabList
             return rootView;
         }
     }
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    	super.onCreateOptionsMenu(menu, inflater);
+    	inflater.inflate(R.menu.frag, menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	super.onOptionsItemSelected(item);
+    	switch (item.getItemId()) {
+		case R.id.createSomething:
+			Toast.makeText(getActivity(), "Well we would create something.", Toast.LENGTH_LONG).show();
+			return true;
+		default:
+			
+			break;
+		}
+    	return false;
+    }
 }

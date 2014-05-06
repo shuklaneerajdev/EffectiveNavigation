@@ -20,9 +20,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -30,5 +33,27 @@ public class MainActivity extends FragmentActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.tabsContainerFrame, new TabsContainerFragment());
         ft.commit();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	super.onCreateOptionsMenu(menu);
+    	MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.menu, menu);
+    	return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	super.onOptionsItemSelected(item);
+    	switch (item.getItemId()) {
+		case R.id.dummyMainItem:
+			Toast.makeText(	getApplicationContext(), 
+							"Main Activity menu item clicked.",
+							Toast.LENGTH_LONG).show();
+			return true;
+
+		default:
+			break;
+		}
+    	return false;
     }
 }
